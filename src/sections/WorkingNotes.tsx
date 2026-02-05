@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
+import Link from 'next/link'
 
 type Category = 'all' | 'essays' | 'notes' | 'prototypes' | 'reading'
 
@@ -13,72 +14,94 @@ const categories: { id: Category; label: string }[] = [
   { id: 'reading', label: 'Reading' },
 ]
 
-const entries = [
+interface Entry {
+  id: number
+  category: Category
+  title: string
+  date: string
+  preview: string
+  featured: boolean
+  slug?: string          // Internal article link
+  externalLink?: string  // External link
+  linkLabel?: string     // Custom link label
+}
+
+const entries: Entry[] = [
   {
     id: 1,
-    category: 'essays' as Category,
+    category: 'essays',
     title: 'Why Robotics Needs Biology',
     date: 'Dec 2024',
     preview: 'The artificial intelligence revolution has largely ignored the most sophisticated intelligence system we know.',
     featured: true,
+    slug: 'why-robotics-needs-biology',
   },
   {
     id: 2,
-    category: 'essays' as Category,
+    category: 'essays',
     title: 'The Fab Lab Thesis Meets Advanced Manufacturing',
     date: 'Jan 2025',
     preview: 'Neil Gershenfeld\'s vision of personal fabrication is colliding with industrial-scale advanced manufacturing.',
     featured: false,
+    slug: 'fab-lab-thesis',
   },
   {
     id: 3,
-    category: 'notes' as Category,
+    category: 'notes',
     title: 'Observations on Mycelium Structural Properties',
     date: 'Jan 2025',
     preview: 'Notes from experiments with mycelium-based composites. Surprising tensile strength in specific growth conditions.',
     featured: true,
+    slug: 'mycelium-observations',
   },
   {
     id: 4,
-    category: 'notes' as Category,
+    category: 'notes',
     title: 'Studio Drift\'s Kinetic Sculptures',
     date: 'Dec 2024',
     preview: 'Reflections after seeing Franchise Freedom. The swarm behavior of drones mimicking starling murmurations.',
     featured: false,
+    slug: 'studio-drift-kinetic',
   },
   {
     id: 5,
-    category: 'prototypes' as Category,
+    category: 'prototypes',
     title: 'archipedia.ai',
     date: '2024',
     preview: 'Visual search engine for architectural precedents using vision transformers and geometric reasoning.',
     featured: true,
-    link: '#',
+    externalLink: '#', // TODO: Add actual archipedia.ai link
+    linkLabel: 'View Project',
   },
   {
     id: 6,
-    category: 'prototypes' as Category,
+    category: 'prototypes',
     title: 'Resia AI',
     date: '2023-24',
     preview: 'Co-founded home renovation startup. Learned about marketplaces, construction dynamics, and product-market fit.',
     featured: false,
-    link: '#',
+    externalLink: '#', // TODO: Add actual Resia link
+    linkLabel: 'Learn More',
   },
   {
     id: 7,
-    category: 'reading' as Category,
+    category: 'reading',
     title: 'The Biophilia Hypothesis — E.O. Wilson',
     date: 'Jan 2025',
     preview: 'Revisiting Wilson\'s foundational text on humanity\'s innate connection to living systems.',
     featured: false,
+    externalLink: 'https://www.amazon.com/Biophilia-Hypothesis-Island-Press-Shearwater/dp/1559631473',
+    linkLabel: 'View Book',
   },
   {
     id: 8,
-    category: 'reading' as Category,
+    category: 'reading',
     title: 'Fab: The Coming Revolution',
     date: 'Dec 2024',
     preview: 'The book that sparked the Fab Lab movement. Gershenfeld\'s vision of digital-physical convergence.',
     featured: false,
+    externalLink: 'https://www.amazon.com/Fab-Coming-Revolution-Desktop-Computers/dp/0465027466',
+    linkLabel: 'View Book',
   },
 ]
 
@@ -164,6 +187,55 @@ export default function WorkingNotes() {
           const isFeatured = entry.featured
           const colSpan = isFeatured ? 'md:col-span-7' : 'md:col-span-5'
           
+          // Determine link type
+          const isInternal = !!entry.slug
+          const href = isInternal ? `/articles/${entry.slug}` : entry.externalLink
+          const linkLabel = entry.linkLabel || (isInternal ? 'Read More' : 'View')
+          
+          const CardContent = (
+            <div 
+              className={`
+                relative p-6 md:p-8 border border-muted/30 rounded-sm h-full
+                transition-all duration-500
+                ${hoveredId === entry.id ? 'border-accent/50 bg-muted/5' : 'bg-transparent'}
+              `}
+            >
+              {/* Category & Date */}
+              <div className="flex justify-between items-center mb-4">
+                <span className="text-micro text-accent">{entry.category}</span>
+                <span className="text-micro text-dim">{entry.date}</span>
+              </div>
+
+              {/* Title */}
+              <h3 className="font-display text-xl md:text-2xl font-medium text-fg mb-3 group-hover:text-accent transition-colors duration-300">
+                {entry.title}
+              </h3>
+
+              {/* Preview */}
+              <p className="text-body text-dim leading-relaxed mb-6">
+                {entry.preview}
+              </p>
+
+              {/* Link */}
+              <div className="flex items-center gap-2 text-sm text-fg/60 group-hover:text-accent transition-colors duration-300">
+                <span>{linkLabel}</span>
+                <span className="transform transition-transform duration-300 group-hover:translate-x-2">→</span>
+              </div>
+
+              {/* Corner Accent */}
+              <div 
+                className={`
+                  absolute top-0 right-0 w-16 h-16 pointer-events-none
+                  transition-opacity duration-500
+                  ${hoveredId === entry.id ? 'opacity-100' : 'opacity-0'}
+                `}
+              >
+                <div className="absolute top-0 right-0 w-full h-[1px] bg-gradient-to-l from-accent to-transparent" />
+                <div className="absolute top-0 right-0 h-full w-[1px] bg-gradient-to-b from-accent to-transparent" />
+              </div>
+            </div>
+          )
+          
           return (
             <motion.article
               key={entry.id}
@@ -174,47 +246,22 @@ export default function WorkingNotes() {
               onMouseEnter={() => setHoveredId(entry.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
-              <div 
-                className={`
-                  relative p-6 md:p-8 border border-muted/30 rounded-sm
-                  transition-all duration-500
-                  ${hoveredId === entry.id ? 'border-accent/50 bg-muted/5' : 'bg-transparent'}
-                `}
-              >
-                {/* Category & Date */}
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-micro text-accent">{entry.category}</span>
-                  <span className="text-micro text-dim">{entry.date}</span>
-                </div>
-
-                {/* Title */}
-                <h3 className="font-display text-xl md:text-2xl font-medium text-fg mb-3 group-hover:text-accent transition-colors duration-300">
-                  {entry.title}
-                </h3>
-
-                {/* Preview */}
-                <p className="text-body text-dim leading-relaxed mb-6">
-                  {entry.preview}
-                </p>
-
-                {/* Link */}
-                <div className="flex items-center gap-2 text-sm text-fg/60 group-hover:text-accent transition-colors duration-300">
-                  <span>{entry.link ? 'View Project' : 'Read More'}</span>
-                  <span className="transform transition-transform duration-300 group-hover:translate-x-2">→</span>
-                </div>
-
-                {/* Corner Accent */}
-                <div 
-                  className={`
-                    absolute top-0 right-0 w-16 h-16 pointer-events-none
-                    transition-opacity duration-500
-                    ${hoveredId === entry.id ? 'opacity-100' : 'opacity-0'}
-                  `}
+              {isInternal ? (
+                <Link href={href!} className="block h-full">
+                  {CardContent}
+                </Link>
+              ) : href ? (
+                <a 
+                  href={href} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block h-full"
                 >
-                  <div className="absolute top-0 right-0 w-full h-[1px] bg-gradient-to-l from-accent to-transparent" />
-                  <div className="absolute top-0 right-0 h-full w-[1px] bg-gradient-to-b from-accent to-transparent" />
-                </div>
-              </div>
+                  {CardContent}
+                </a>
+              ) : (
+                CardContent
+              )}
             </motion.article>
           )
         })}
@@ -230,4 +277,3 @@ export default function WorkingNotes() {
     </section>
   )
 }
-
