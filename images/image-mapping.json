@@ -1,0 +1,149 @@
+{
+  "generated_at": "2026-02-06T01:42:29.016Z",
+  "description": "Image mapping for dual-mode portfolio",
+  "sections": {
+    "hero": {
+      "systems": [
+        "hero/systems-tech-1.webp"
+      ],
+      "living": [
+        "hero/living-organic-1.jpeg",
+        "hero/living-organic-2.jpeg"
+      ]
+    },
+    "philosophy": {
+      "systems": [
+        "philosophy/systems-parametric-1.jpg"
+      ],
+      "living": [
+        "philosophy/living-artistic.jpeg",
+        "philosophy/living-intelligence.jpeg",
+        "philosophy/living-spatial-1.jpg"
+      ]
+    },
+    "domains": {
+      "living-systems": {
+        "systems": "domains/computational-tech-1.jpg",
+        "living": "domains/living-systems-organic.png"
+      },
+      "distributed-production": {
+        "living": "domains/distributed-organic.png"
+      },
+      "material-intelligence": {
+        "living": "domains/material-intel-organic.png"
+      },
+      "computational-design": {
+        "systems": "domains/computational-tech-1.jpg",
+        "living": "domains/computational-organic-1.jpg"
+      }
+    },
+    "work": {
+      "ut-austin": {
+        "systems": [
+          "work/ut-austin-tech-1.jpg",
+          "work/ut-austin-tech-2.jpg"
+        ],
+        "living": [
+          "work/ut-austin-organic-1.jpg",
+          "work/ut-austin-organic-2.jpg"
+        ]
+      },
+      "research": {
+        "systems": [
+          "work/research-tech-1.jpg",
+          "work/research-tech-2.jpg"
+        ],
+        "living": [
+          "work/research-organic-1.jpg"
+        ]
+      },
+      "gallery": [
+        "work/gallery-1.jpg",
+        "work/gallery-2.jpg",
+        "work/gallery-3.jpg",
+        "work/gallery-4.jpg",
+        "work/gallery-5.jpg",
+        "work/gallery-6.jpg"
+      ]
+    }
+  },
+  "remaining_images": {
+    "hirano": [
+      "backround.jpg",
+      "flux-1-kontext-dev_human_and_robot_sitt (1).png",
+      "flux-1-kontext-dev_old-timey_photo_of_f.png",
+      "gemini-2.0-flash-preview-image-generation_human_and_robot_sitt.png",
+      "gemini-2.5-flash-image-preview (nano-banana)_robot_treating_human.png",
+      "Generated Image February 05, 2026 - 5_02PM.jpeg",
+      "imagen-4.0-ultra-generate-preview-06-06_robot_treating_human.png",
+      "seedream-3_pablo_picasso_painti.jpeg",
+      "undefined_human_brain_merged_w.jpeg",
+      "undefined_human_consuming_all_.jpeg",
+      "undefined_human_falling_apart_ (1).png",
+      "undefined_pablo_picasso_painti.png",
+      "undefined_photograph_of_futuri.webp",
+      "undefined_robots_as_plants,_cy.jpeg",
+      "UNDERGROUND-min.jpeg"
+    ],
+    "portfolio": [
+      "img107.jpg",
+      "img111.jpg",
+      "img114.jpg",
+      "img115.jpg",
+      "img116.jpg",
+      "img119.jpg",
+      "img125.jpg",
+      "img126.jpg",
+      "img127.jpg",
+      "img146.jpg",
+      "img148.jpg",
+      "img15.jpg",
+      "img150.jpg",
+      "img152.jpg",
+      "img154.jpg",
+      "img156.jpg",
+      "img158.jpg",
+      "img159.jpg",
+      "img160.jpg",
+      "img167.jpg",
+      "img168.jpg",
+      "img169.jpg",
+      "img27.jpg",
+      "img31.jpg",
+      "img32.jpg",
+      "img33.jpg",
+      "img34.jpg",
+      "img35.jpg",
+      "img36.jpg",
+      "img37.jpg",
+      "img40.jpg",
+      "img41.jpg",
+      "img48.jpg",
+      "img65.jpg",
+      "img66.jpg",
+      "img67.jpg",
+      "img68.jpg",
+      "img69.jpg",
+      "img70.jpg",
+      "img71.jpg",
+      "img72.jpg",
+      "img73.jpg",
+      "img81.jpg",
+      "img82.jpg",
+      "img83.jpg",
+      "img84.jpg",
+      "img85.jpg",
+      "img86.jpg",
+      "img87.jpg",
+      "img88.jpg",
+      "img89.jpg",
+      "img90.jpg",
+      "img91.jpg",
+      "img92.jpg",
+      "img93.jpg",
+      "img94.jpg",
+      "img95.jpg",
+      "img96.jpg"
+    ]
+  }
+}
