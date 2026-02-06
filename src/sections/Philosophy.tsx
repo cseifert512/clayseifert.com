@@ -70,48 +70,21 @@ export default function Philosophy() {
             )}
           </AnimatePresence>
 
-          {/* Visual Placeholder - Mode Aware */}
+          {/* Material Study Image - Mode Aware */}
           <AnimatePresence mode="wait">
             <motion.div
               key={mode}
-              className="mt-16 aspect-[4/3] border rounded-sm flex items-center justify-center mode-transition"
-              style={{ borderColor: 'var(--color-muted)' }}
+              className="mt-16 aspect-[4/3] rounded-sm overflow-hidden"
               variants={imageParallaxFade}
               initial="hidden"
               animate="visible"
               exit="hidden"
             >
-              <div className="text-center p-8" style={{ color: 'var(--color-dim)' }}>
-                {mode === 'systems' ? (
-                  <>
-                    <p className="text-micro mb-2" style={{ color: 'var(--color-accent)' }}>
-                      [ VISUAL: PARAMETRIC MATERIAL ]
-                    </p>
-                    <p className="text-xs" style={{ color: 'var(--color-muted)' }}>
-                      Systems: Close-up of 3D printed parametric lattice structure,
-                      white/light gray with complex internal voids, bone-like geometry,
-                      side lighting on dark background
-                    </p>
-                    <p className="text-xs mt-3 opacity-60">
-                      File: public/visuals/philosophy/systems-material.webp
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <p className="text-micro mb-2" style={{ color: 'var(--color-accent)' }}>
-                      [ VISUAL: MYCELIUM COMPOSITE ]
-                    </p>
-                    <p className="text-xs" style={{ color: 'var(--color-muted)' }}>
-                      Living: Extreme macro of mycelium composite surface,
-                      dense fibrous texture with visible hyphal networks,
-                      natural off-white and tan coloring, warm studio lighting
-                    </p>
-                    <p className="text-xs mt-3 opacity-60">
-                      File: public/visuals/philosophy/living-material.webp
-                    </p>
-                  </>
-                )}
-              </div>
+              <img
+                src={mode === 'systems' ? '/visuals/philosophy/systems-parametric-1.jpg' : '/visuals/philosophy/living-artistic.jpeg'}
+                alt={mode === 'systems' ? 'Parametric architectural structure' : 'Organic material study'}
+                className="w-full h-full object-cover"
+              />
             </motion.div>
           </AnimatePresence>
         </motion.div>

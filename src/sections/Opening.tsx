@@ -2,6 +2,7 @@
 
 import { useRef } from 'react'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 import ASCIIBackground from '@/components/ASCIIBackground'
 import OrganicBackground from '@/components/OrganicBackground'
 import { useViewMode } from '@/hooks/useViewMode'
@@ -30,48 +31,23 @@ export default function Opening() {
       <ASCIIBackground pattern="cellular" opacity={isLiving ? 0 : 0.06} />
       <OrganicBackground opacity={isLiving ? 0.08 : 0} />
 
-      {/* Visual Placeholder - Mode Aware */}
+      {/* Hero Visual - Mode Aware */}
       <AnimatePresence mode="wait">
         <motion.div
           key={mode}
-          className="absolute right-0 top-1/2 -translate-y-1/2 w-1/2 h-[80vh] opacity-20 pointer-events-none hidden lg:block"
+          className="absolute right-0 top-1/2 -translate-y-1/2 w-1/2 h-[80vh] pointer-events-none hidden lg:block overflow-hidden rounded-lg"
           variants={imageParallaxFade}
           initial="hidden"
           animate="visible"
           exit="hidden"
         >
-          <div className="w-full h-full border rounded-lg flex items-center justify-center mode-transition"
-            style={{ borderColor: 'var(--color-muted)' }}>
-            <div className="text-center text-dim p-8">
-              {mode === 'systems' ? (
-                <>
-                  <p className="text-micro mb-3" style={{ color: 'var(--color-accent)' }}>
-                    [ VISUAL: PARAMETRIC LATTICE STRUCTURE ]
-                  </p>
-                  <p className="text-xs max-w-xs mx-auto leading-relaxed" style={{ color: 'var(--color-dim)' }}>
-                    Systems View: Dark background with animated cyan/steel blue parametric lattice,
-                    particle effects connecting metallic nodes — computational precision meets network topology
-                  </p>
-                  <p className="text-xs mt-4 opacity-60" style={{ color: 'var(--color-dim)' }}>
-                    File: public/visuals/hero/systems-lattice.webm
-                  </p>
-                </>
-              ) : (
-                <>
-                  <p className="text-micro mb-3" style={{ color: 'var(--color-accent)' }}>
-                    [ VISUAL: ORGANIC GROWTH PATTERN ]
-                  </p>
-                  <p className="text-xs max-w-xs mx-auto leading-relaxed" style={{ color: 'var(--color-dim)' }}>
-                    Living View: Warm gradient (terracotta to forest green) with subtle mycelium growth
-                    texture overlay, gentle breathing animation — biological intelligence in motion
-                  </p>
-                  <p className="text-xs mt-4 opacity-60" style={{ color: 'var(--color-dim)' }}>
-                    File: public/visuals/hero/living-mycelium.webm
-                  </p>
-                </>
-              )}
-            </div>
-          </div>
+          <motion.img
+            src={mode === 'systems' ? '/visuals/hero/systems-tech-1.webp' : '/visuals/hero/living-organic-1.jpeg'}
+            alt={mode === 'systems' ? 'Computational infrastructure visualization' : 'Organic living systems'}
+            className="w-full h-full object-cover opacity-30"
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+          />
         </motion.div>
       </AnimatePresence>
 

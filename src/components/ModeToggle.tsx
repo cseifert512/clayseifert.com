@@ -23,7 +23,7 @@ export default function ModeToggle() {
   return (
     <motion.button
       onClick={toggleMode}
-      className="fixed top-6 right-6 md:top-8 md:right-12 z-50 flex items-center gap-2 md:gap-3 px-3 md:px-4 py-2 md:py-3 rounded-full border transition-all duration-300 group shadow-lg"
+      className="fixed bottom-6 right-6 md:bottom-8 md:right-12 z-50 flex items-center gap-2 md:gap-3 px-3 md:px-4 py-2 md:py-3 rounded-full border transition-all duration-300 group shadow-lg"
       style={{
         backgroundColor: 'var(--color-bg)',
         borderColor: 'var(--color-muted)',

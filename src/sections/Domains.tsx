@@ -24,8 +24,8 @@ const domains: DomainContent[] = [
     livingDescription: 'What if construction worked with biological intelligence instead of treating everything as inert matter? Mycelium composites that grow into structural forms. Materials that heal and adapt. Buildings that breathe. This isn\'t speculative—it\'s the foundation of a construction revolution that respects ecology while expanding human capability.',
     systemsVisual: 'Parametric diagram of robotic arm with material feeds, technical wireframe showing adaptive toolpath generation',
     livingVisual: 'Close-up photography of mycelium growth with natural branching patterns, organic material texture',
-    systemsFile: 'public/visuals/domains/living-systems-tech.webp',
-    livingFile: 'public/visuals/domains/living-systems-organic.webp',
+    systemsFile: '/visuals/domains/computational-tech-1.jpg',
+    livingFile: '/visuals/domains/living-systems-organic.png',
     ascii: `
     ╭─○─╮   ╭─○─╮
     │   │   │   │
@@ -41,8 +41,8 @@ const domains: DomainContent[] = [
     livingDescription: 'Democratizing advanced manufacturing tools and knowledge—inspired by Fab Lab philosophy. When you decentralize the means of production, innovation comes from unexpected places and the knowledge network strengthens. Communities building for themselves, not waiting for centralized solutions.',
     systemsVisual: 'Network topology diagram with white/green nodes on dark background, distributed mesh visualization',
     livingVisual: 'Community workshop photography or abstract mesh suggesting connection and collaboration',
-    systemsFile: 'public/visuals/domains/distributed-tech.webp',
-    livingFile: 'public/visuals/domains/distributed-organic.webp',
+    systemsFile: '/visuals/domains/computational-tech-1.jpg',
+    livingFile: '/visuals/domains/distributed-organic.png',
     ascii: `
     ◉───────◉───────◉
     │ ╲   ╱ │ ╲   ╱ │
@@ -57,8 +57,8 @@ const domains: DomainContent[] = [
     livingDescription: 'Moving beyond inert materials to responsive, adaptive, ecologically-integrated material systems. How do we design with materials that evolve, heal, and integrate into living ecosystems? Materials as participants in ecological cycles, not just resources to extract.',
     systemsVisual: 'Gradient structure cross-section showing functionally graded material, technical illustration style',
     livingVisual: 'Responsive surface macro photography showing organic texture variations and natural adaptation',
-    systemsFile: 'public/visuals/domains/material-intel-tech.webp',
-    livingFile: 'public/visuals/domains/material-intel-organic.webp',
+    systemsFile: '/visuals/domains/computational-tech-1.jpg',
+    livingFile: '/visuals/domains/material-intel-organic.png',
     ascii: `
     ░░▒▒▓▓██▓▓▒▒░░
     ▒▒▓▓██████▓▓▒▒
@@ -74,8 +74,8 @@ const domains: DomainContent[] = [
     livingDescription: 'Parametric thinking meets robotic fabrication, advanced simulation meets real-world constraints. The computer enables us to explore organic complexity that\'s actually buildable. Natural forms emerge from computational logic—not arbitrary curves, but structures optimized for beauty AND performance.',
     systemsVisual: 'Wireframe parametric mesh showing topology optimization, clean technical 3D modeling aesthetic',
     livingVisual: 'Built structure photography showing organic computation made physical, architectural scale',
-    systemsFile: 'public/visuals/domains/computational-tech.webp',
-    livingFile: 'public/visuals/domains/computational-organic.webp',
+    systemsFile: '/visuals/domains/computational-tech-1.jpg',
+    livingFile: '/visuals/domains/computational-organic-1.jpg',
     ascii: `
     ╱╲    ╱╲    ╱╲
    ╱  ╲  ╱  ╲  ╱  ╲
@@ -92,8 +92,8 @@ const domains: DomainContent[] = [
     livingDescription: 'Addressing Kardashev-scale challenges (energy, expansion, planetary boundaries) with Earth-scale solutions. How do we sustain and elevate life as we expand our technological capabilities? Building systems that work at the scale of civilizations while respecting the scale of ecosystems.',
     systemsVisual: 'Feedback loop diagram showing system dynamics, interconnected cycles and flows visualization',
     livingVisual: 'Nested scales imagery or planetary perspective showing interconnection from local to global',
-    systemsFile: 'public/visuals/domains/systems-thinking-tech.webp',
-    livingFile: 'public/visuals/domains/systems-thinking-organic.webp',
+    systemsFile: '/visuals/domains/computational-tech-1.jpg',
+    livingFile: '/visuals/domains/computational-organic-1.jpg',
     ascii: `
     ╭──────────────╮
     │  ╭────────╮  │
@@ -224,31 +224,21 @@ export default function Domains() {
               </div>
             </div>
 
-            {/* Visual Placeholder - Shows on Hover (Desktop) - Mode Aware */}
+            {/* Domain Image - Shows on Hover (Desktop) - Mode Aware */}
             <AnimatePresence>
               {hoveredIndex === index && (
                 <motion.div
-                  className="hidden lg:block absolute right-24 top-1/2 -translate-y-1/2 w-80 border rounded-sm backdrop-blur-sm z-10 mode-transition"
-                  style={{ 
-                    borderColor: 'var(--color-muted)',
-                    backgroundColor: 'rgba(var(--color-bg-rgb, 10, 10, 10), 0.8)'
-                  }}
+                  className="hidden lg:block absolute right-24 top-1/2 -translate-y-1/2 w-80 h-64 rounded-sm overflow-hidden z-10 shadow-2xl"
                   initial={{ opacity: 0, x: 8 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 8 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="flex flex-col p-6">
-                    <p className="text-micro mb-3" style={{ color: 'var(--color-accent)' }}>
-                      [ VISUAL ]
-                    </p>
-                    <p className="text-xs leading-relaxed mb-4" style={{ color: 'var(--color-dim)' }}>
-                      {isLiving ? domain.livingVisual : domain.systemsVisual}
-                    </p>
-                    <p className="text-xs opacity-60 font-mono" style={{ color: 'var(--color-dim)' }}>
-                      {isLiving ? domain.livingFile : domain.systemsFile}
-                    </p>
-                  </div>
+                  <img
+                    src={isLiving ? domain.livingFile : domain.systemsFile}
+                    alt={domain.title}
+                    className="w-full h-full object-cover"
+                  />
                 </motion.div>
               )}
             </AnimatePresence>

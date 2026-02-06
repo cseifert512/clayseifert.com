@@ -28,8 +28,8 @@ const projects: ProjectContent[] = [
     tags: ['AI/ML', 'Computer Vision', 'Architecture'],
     systemsVisual: 'Clean UI mockup of search interface with architectural similarity results, dark mode with technical annotations',
     livingVisual: 'Grid of architectural images showing visual connections and similarities, warm presentation',
-    systemsFile: 'public/visuals/work/archipedia-tech.webp',
-    livingFile: 'public/visuals/work/archipedia-organic.webp',
+    systemsFile: '/visuals/work/research-tech-1.jpg',
+    livingFile: '/visuals/work/research-organic-1.jpg',
     link: '#',
   },
   {
@@ -41,8 +41,8 @@ const projects: ProjectContent[] = [
     tags: ['Startup', 'Marketplace', 'Construction'],
     systemsVisual: 'Dashboard interface mockup showing project management and contractor matching system',
     livingVisual: 'Before/after renovation imagery or human-centered contractor interaction visuals',
-    systemsFile: 'public/visuals/work/resia-tech.webp',
-    livingFile: 'public/visuals/work/resia-organic.webp',
+    systemsFile: '/visuals/work/gallery-1.jpg',
+    livingFile: '/visuals/work/gallery-2.jpg',
     link: '#',
   },
   {
@@ -54,8 +54,8 @@ const projects: ProjectContent[] = [
     tags: ['Research', 'Computational Design', 'Academic'],
     systemsVisual: 'Research figures composite showing parametric geometry studies and computational methods',
     livingVisual: 'Built prototypes and material studies from research showing physical manifestation',
-    systemsFile: 'public/visuals/work/research-tech.webp',
-    livingFile: 'public/visuals/work/research-organic.webp',
+    systemsFile: '/visuals/work/research-tech-1.jpg',
+    livingFile: '/visuals/work/research-organic-1.jpg',
     link: '#',
   },
   {
@@ -67,8 +67,8 @@ const projects: ProjectContent[] = [
     tags: ['Education', 'Architecture', 'CS'],
     systemsVisual: 'Computational models and technical drawings showing systematic design process',
     livingVisual: 'Architectural thesis renderings with human scale showing spatial experience',
-    systemsFile: 'public/visuals/work/ut-austin-tech.webp',
-    livingFile: 'public/visuals/work/ut-austin-organic.webp',
+    systemsFile: '/visuals/work/ut-austin-tech-1.jpg',
+    livingFile: '/visuals/work/ut-austin-organic-1.jpg',
   },
 ]
 
@@ -210,23 +210,13 @@ export default function Built() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.3 }}
-                  className="aspect-[4/3] border rounded-sm flex items-center justify-center mode-transition"
-                  style={{
-                    borderColor: 'rgba(var(--color-muted-rgb, 58, 58, 58), 0.5)',
-                    backgroundColor: 'rgba(var(--color-muted-rgb, 58, 58, 58), 0.05)'
-                  }}
+                  className="aspect-[4/3] rounded-sm overflow-hidden"
                 >
-                  <div className="text-center p-8">
-                    <p className="text-micro mb-3" style={{ color: 'var(--color-accent)' }}>
-                      [ VISUAL ]
-                    </p>
-                    <p className="text-sm max-w-xs leading-relaxed mb-4" style={{ color: 'var(--color-dim)' }}>
-                      {isLiving ? hoveredProject.livingVisual : hoveredProject.systemsVisual}
-                    </p>
-                    <p className="text-xs opacity-60 font-mono" style={{ color: 'var(--color-dim)' }}>
-                      {isLiving ? hoveredProject.livingFile : hoveredProject.systemsFile}
-                    </p>
-                  </div>
+                  <img
+                    src={isLiving ? hoveredProject.livingFile : hoveredProject.systemsFile}
+                    alt={hoveredProject.title}
+                    className="w-full h-full object-cover"
+                  />
                 </motion.div>
               ) : (
                 <motion.div
