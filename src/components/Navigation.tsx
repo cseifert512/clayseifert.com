@@ -58,11 +58,8 @@ export default function Navigation() {
               e.preventDefault()
               window.scrollTo({ top: 0, behavior: 'smooth' })
             }}
-            className={`
-              font-display font-semibold text-lg tracking-tight pointer-events-auto
-              transition-colors duration-300
-              ${scrolled ? 'text-fg' : 'text-fg'}
-            `}
+            className="font-display font-semibold text-lg tracking-tight pointer-events-auto mode-transition-fast"
+            style={{ color: 'var(--color-fg)' }}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -73,14 +70,18 @@ export default function Navigation() {
           {/* Menu Button */}
           <motion.button
             onClick={() => setIsOpen(true)}
-            className={`
-              font-body text-sm tracking-widest uppercase pointer-events-auto
-              transition-colors duration-300 hover:text-accent
-              ${scrolled ? 'text-fg' : 'text-fg'}
-            `}
+            className="font-body text-sm tracking-widest uppercase pointer-events-auto mode-transition-fast"
+            style={{ color: 'var(--color-fg)' }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = 'var(--color-accent)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = 'var(--color-fg)'
+            }}
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
+            aria-label="Open navigation menu"
           >
             Menu
           </motion.button>
@@ -91,7 +92,8 @@ export default function Navigation() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed inset-0 z-100 bg-bg"
+            className="fixed inset-0 z-100 mode-transition"
+            style={{ backgroundColor: 'var(--color-bg)' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -99,7 +101,10 @@ export default function Navigation() {
           >
             {/* ASCII Pattern Background */}
             <div className="absolute inset-0 overflow-hidden opacity-10 pointer-events-none select-none">
-              <pre className="font-mono text-[8px] leading-none text-accent whitespace-pre animate-drift">
+              <pre 
+                className="font-mono text-[8px] leading-none whitespace-pre animate-drift mode-transition"
+                style={{ color: 'var(--color-accent)' }}
+              >
 {`
     ╭────────────────────────────────────────────────────────────────────────────────────────────────╮
     │                                                                                                │
@@ -125,10 +130,18 @@ export default function Navigation() {
             {/* Close Button */}
             <motion.button
               onClick={() => setIsOpen(false)}
-              className="absolute top-6 right-6 md:top-8 md:right-8 font-body text-sm tracking-widest uppercase text-fg hover:text-accent transition-colors duration-300"
+              className="absolute top-6 right-6 md:top-8 md:right-8 font-body text-sm tracking-widest uppercase mode-transition-fast"
+              style={{ color: 'var(--color-fg)' }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = 'var(--color-accent)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = 'var(--color-fg)'
+              }}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3 }}
+              aria-label="Close navigation menu"
             >
               Close
             </motion.button>
@@ -145,10 +158,16 @@ export default function Navigation() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 + index * 0.08, duration: 0.5 }}
                 >
-                  <span className="font-display text-4xl md:text-6xl lg:text-7xl font-medium text-fg group-hover:text-accent transition-colors duration-300">
+                  <span 
+                    className="font-display text-4xl md:text-6xl lg:text-7xl font-medium mode-transition-fast"
+                    style={{ color: 'var(--color-fg)' }}
+                  >
                     {item.label}
                   </span>
-                  <span className="absolute -left-8 top-1/2 -translate-y-1/2 w-4 h-[2px] bg-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <span 
+                    className="absolute -left-8 top-1/2 -translate-y-1/2 w-4 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 mode-transition"
+                    style={{ backgroundColor: 'var(--color-accent)' }}
+                  />
                 </motion.a>
               ))}
             </nav>
@@ -160,7 +179,7 @@ export default function Navigation() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
             >
-              <p className="text-dim text-sm">
+              <p className="text-sm mode-transition" style={{ color: 'var(--color-dim)' }}>
                 Builder at the intersection of robotics,<br />
                 living systems & advanced manufacturing
               </p>

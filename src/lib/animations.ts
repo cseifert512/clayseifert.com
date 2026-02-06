@@ -135,3 +135,55 @@ export const hoverGlow = {
   transition: { duration: 0.3 },
 }
 
+// Mode transition animations
+export const modeTransitionDuration = 1000
+export const modeTransitionEasing = [0.4, 0.0, 0.2, 1]
+
+export const contentCrossfade: Variants = {
+  hidden: {
+    opacity: 0,
+    transition: {
+      duration: 0.4,
+      ease: modeTransitionEasing,
+    },
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+      delay: 0.4,
+      ease: modeTransitionEasing,
+    },
+  },
+}
+
+export const imageParallaxFade: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+    transition: {
+      duration: 0.5,
+      ease: modeTransitionEasing,
+    },
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      delay: 0.3,
+      ease: modeTransitionEasing,
+    },
+  },
+}
+
+export const breathingAnimation = {
+  scale: [1, 1.02, 1],
+  opacity: [0.8, 1, 0.8],
+  transition: {
+    duration: 4,
+    repeat: Infinity,
+    ease: 'easeInOut',
+  },
+}
+

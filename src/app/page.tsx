@@ -1,5 +1,6 @@
 import Navigation from '@/components/Navigation'
 import Cursor from '@/components/Cursor'
+import ModeToggle from '@/components/ModeToggle'
 import Opening from '@/sections/Opening'
 import Philosophy from '@/sections/Philosophy'
 import Domains from '@/sections/Domains'
@@ -12,6 +13,7 @@ export default function Home() {
     <>
       <Cursor />
       <Navigation />
+      <ModeToggle />
       <main className="relative">
         {/* Noise Overlay */}
         <div className="fixed inset-0 pointer-events-none z-50 noise-overlay" />
